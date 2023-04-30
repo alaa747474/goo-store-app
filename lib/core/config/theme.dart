@@ -35,6 +35,11 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         fontSize: 35.sp,
       ),
+      labelMedium: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 30.sp,
+      ),
       titleLarge: TextStyle(
         color:  !isDarkTheme? Colors.black:Colors.white,
         fontWeight: FontWeight.w600,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:goo_store_app/core/cache/cubit/cache_cubit.dart';
 import 'package:goo_store_app/core/config/app_router.dart';
 import 'package:goo_store_app/core/config/theme.dart';
 import 'package:goo_store_app/core/constants/app_routes.dart';
@@ -19,12 +21,15 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'GOO STORE',
-          theme: AppTheme.theme(isDarkTheme: false),
-          onGenerateRoute: AppRouter.generateRoute,
-          initialRoute: AppRoutes.signUpScreen,
+        return BlocProvider(
+          create: (context) => CacheCubit()..getCurrentUserToken(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'GOO STORE',
+            theme: AppTheme.theme(isDarkTheme: false),
+            onGenerateRoute: AppRouter.generateRoute,
+            initialRoute: AppRoutes.homeScreen,
+          ),
         );
       },
     );

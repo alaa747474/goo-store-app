@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:goo_store_app/core/cache/app_secure_storage.dart';
 import 'package:goo_store_app/core/widgets/custom_button.dart';
 import 'package:goo_store_app/features/auth/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:goo_store_app/features/auth/presentation/widgets/auth_text_field.dart';
@@ -76,7 +77,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
-                  if (state is UserLoggedInSuccessfully) {}
+                  if (state is UserLoggedInSuccessfully) {
+                    AppSecureStorage.instance.saveCurrentUserData(
+                        key: 'TOKEN', data: state.loginModel.userData!.token!);
+                  }
                 },
                 builder: (context, state) {
                   if (state is AuthLoading) {

@@ -4,10 +4,11 @@ class DioHelper {
   final Dio _dio;
   DioHelper(this._dio);
 
-  Future<Response> getData({required String endPoint, String? token}) async {
+  Future<Response> getData({required String endPoint, String? token,String ?lang}) async {
     Response response = await _dio.get(endPoint,
         options: Options(headers: {
           'authorization': 'Bearer $token',
+          'lang':lang
         }));
     return response;
   }
