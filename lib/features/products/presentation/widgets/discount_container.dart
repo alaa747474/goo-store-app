@@ -6,7 +6,7 @@ class DiscountContainer extends StatelessWidget {
   final num discount;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return discount==0?const SizedBox(): Container(
       margin: EdgeInsets.all(8.r),
       width: 45.w,
       height: 25.h,

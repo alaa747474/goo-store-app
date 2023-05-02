@@ -6,6 +6,7 @@ class AppTheme {
     switch (isDarkTheme) {
       case true:
         return ThemeData(
+           bottomSheetTheme:const BottomSheetThemeData(backgroundColor: Colors.transparent),
           hintColor: const Color.fromARGB(255, 169, 169, 169),
           primaryColor: const Color(0xffff7c2e),
           cardColor: const Color(0xff2A2C36),
@@ -15,6 +16,7 @@ class AppTheme {
         );
       case false:
         return ThemeData(
+          bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.transparent),
           hintColor: const Color.fromARGB(255, 169, 169, 169),
           primaryColor: const Color(0xffff7c2e),
           cardColor: Colors.white,
@@ -50,7 +52,17 @@ class AppTheme {
           fontSize: 14.sp,
           fontWeight: FontWeight.normal
           ),
-      
+
+      bodyLarge: TextStyle(
+          color: !isDarkTheme? Colors.black:Colors.white,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.bold
+          ),
+      bodySmall: TextStyle(
+          color: Colors.grey,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.normal
+          ),
     );
   }
 }

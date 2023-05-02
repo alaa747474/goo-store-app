@@ -10,9 +10,9 @@ class ProductsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  padding: EdgeInsets.only(top: 5.h),
                   scrollDirection: Axis.vertical,
-                  physics: const ScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount:products.length,
                   itemBuilder: (BuildContext context, int index) {

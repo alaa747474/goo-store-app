@@ -13,3 +13,12 @@ class CategoriesLoaded extends CategoryState {
 
   CategoriesLoaded(this.categories);
 }
+class CategoryProdcutsLoaded extends CategoryState {
+  final List<Product>categoryProducts;
+  CategoryProdcutsLoaded(this.categoryProducts);
+}
+class CategoryFailToLoad extends CategoryState {
+  final String text;
+
+  CategoryFailToLoad(this.text);
+}

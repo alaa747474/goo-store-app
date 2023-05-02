@@ -4,11 +4,17 @@ class DioHelper {
   final Dio _dio;
   DioHelper(this._dio);
 
-  Future<Response> getData({required String endPoint, String? token,String ?lang}) async {
+  Future<Response> getData(
+      {required String endPoint,
+      String? token,
+      String? lang = 'en',
+      Map<String, dynamic>? queryParameters}) async {
     Response response = await _dio.get(endPoint,
+        queryParameters: queryParameters,
         options: Options(headers: {
-          'authorization': 'Bearer $token',
-          'lang':lang
+          'Content-Type': 'application/json',
+          'Authorization': token ?? '',
+          'lang': lang,
         }));
     return response;
   }
@@ -18,7 +24,7 @@ class DioHelper {
     Response response = await _dio.post(endPoint,
         data: data,
         options: Options(headers: {
-          'authorization': 'Bearer $token',
+          'authorization': token ?? '',
           'Content-Type': 'application/json'
         }));
     return response;
@@ -29,7 +35,16 @@ class DioHelper {
     Response response = await _dio.put(endPoint,
         data: data,
         options: Options(headers: {
-          'authorization': 'Bearer $token',
+          'authorization': token ?? '',
+          'Content-Type': 'application/json'
+        }));
+    return response;
+  }
+
+  Future<Response> deleteData({required String endPoint, String? token}) async {
+    Response response = await _dio.delete(endPoint,
+        options: Options(headers: {
+          'authorization': token ?? '',
           'Content-Type': 'application/json'
         }));
     return response;

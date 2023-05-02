@@ -20,15 +20,7 @@ Dio dioSetUp() {
     ..options.baseUrl = AppEndPoints.baseUrl
     ..options.connectTimeout = const Duration(seconds: 40)
     ..options.receiveTimeout = const Duration(seconds: 40);
-
-  dio.interceptors.add(LogInterceptor(
-    responseBody: true,
-    error: true,
-    requestHeader: true,
-    responseHeader: true,
-    request: true,
-    requestBody: false,
-  ));
+  
 
   return dio;
 }

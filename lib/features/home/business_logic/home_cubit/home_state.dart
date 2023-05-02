@@ -8,3 +8,6 @@ class ChangeBottomNavIndex extends HomeState {
   final int selectedIndex;
   ChangeBottomNavIndex(this.selectedIndex);
 }
+class ChangeAppThemec extends HomeState {
+  
+}

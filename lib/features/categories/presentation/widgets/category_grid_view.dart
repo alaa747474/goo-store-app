@@ -12,7 +12,7 @@ class CategoryGridView extends StatelessWidget {
     return GridView.custom(
       shrinkWrap: true,
       physics:const ScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: 5.w,vertical: 10.h),
+      padding: EdgeInsets.symmetric(vertical: 10.h),
       gridDelegate: SliverQuiltedGridDelegate(
         crossAxisCount: 4,
         mainAxisSpacing: 5,
