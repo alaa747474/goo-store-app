@@ -9,9 +9,9 @@ class ProductRepository extends BaseProductRepository {
 
   ProductRepository(this._dioHelper);
   @override
-  Future<List<Product>> getAllproducts() async {
+  Future<List<Product>> getAllproducts({required String token}) async {
     Response response =
-        await _dioHelper.getData(endPoint: AppEndPoints.products, lang: 'en');
+        await _dioHelper.getData(endPoint: AppEndPoints.products, token: token);
     List<dynamic> data = response.data['data']['data'];
     return data.map((product) => Product.fromJson(product)).toList();
   }

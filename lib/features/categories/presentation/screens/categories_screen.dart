@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_store_app/core/service/service_locator.dart';
+import 'package:goo_store_app/core/widgets/custom_app_bar.dart';
 import 'package:goo_store_app/core/widgets/loading_indicator.dart';
 import 'package:goo_store_app/features/categories/business_logic/category_cubit/category_cubit.dart';
 import 'package:goo_store_app/features/categories/data/repositories/category_repository.dart';
@@ -28,12 +29,7 @@ class CategoriesScreen extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        appBar: AppBar(
-          actions: [IconButton(onPressed: (){}, icon: const Icon(Icons.search))],
-          backgroundColor: Theme.of(context).cardColor,
-          centerTitle: true,
-          title: Text('Categories',style: Theme.of(context).textTheme.bodyLarge,),
-        ),
+        appBar:const CustomAppBar(text: 'Categories'),
           body: ListView(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
         physics: const BouncingScrollPhysics(),

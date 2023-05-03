@@ -11,6 +11,7 @@ class AppTheme {
           primaryColor: const Color(0xffff7c2e),
           cardColor: const Color(0xff2A2C36),
           scaffoldBackgroundColor:const Color(0xff1E1F28),
+          dividerColor: Colors.white,
           shadowColor: Colors.black,
           textTheme: textTheme(isDarkTheme: isDarkTheme),
         );
@@ -22,6 +23,7 @@ class AppTheme {
           cardColor: Colors.white,
           scaffoldBackgroundColor:  const Color(0xffE5E5E5),
           shadowColor: Colors.black,
+          dividerColor: Colors.black,
           textTheme: textTheme(isDarkTheme: isDarkTheme),
         );
     }

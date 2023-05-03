@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goo_store_app/core/service/dio_helper.dart';
 import 'package:goo_store_app/core/service/service_locator.dart';
+import 'package:goo_store_app/core/widgets/custom_app_bar.dart';
 import 'package:goo_store_app/core/widgets/erorr_text.dart';
 import 'package:goo_store_app/core/widgets/loading_indicator.dart';
 import 'package:goo_store_app/features/favorite/business_logic/favorite_cubit/favorite_cubit.dart';
@@ -20,7 +21,7 @@ class FavoriteScreen extends StatelessWidget {
           FavoriteCubit(FavoriteRepository(getIt.get<DioHelper>()))
             ..getFavoriteList(),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: const CustomAppBar(text: 'Favorite'),
         body: BlocBuilder<FavoriteCubit, FavoriteState>(
           builder: (context, state) {
             if (state is FavoriteLoading) {

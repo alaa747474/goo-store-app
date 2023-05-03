@@ -6,4 +6,5 @@ class AppEndPoints {
   static const String categories = 'categories';
   static const String products = 'products';
   static const String favorites = 'favorites';
+  static const String carts ='carts';
 }

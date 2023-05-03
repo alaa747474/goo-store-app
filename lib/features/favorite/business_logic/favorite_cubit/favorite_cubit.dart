@@ -14,20 +14,20 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
   void getFavoriteList() async {
     emit(FavoriteLoading());
-    String? token =
-        await AppSecureStorage.instance.getCurrentUserData(key: 'TOKEN');
+    String? token = await AppSecureStorage.instance.getToken();
     _favoriteRepository.getFavoriteList(token: token!).then((value) {
       emit(FavoriteLoaded(value));
     });
   }
 
   void addOrDeleteFavoriteWithProductId({required num productId}) async {
-    String? token =
-        await AppSecureStorage.instance.getCurrentUserData(key: 'TOKEN');
+    emit(FavoriteLoading());
+    String? token = await AppSecureStorage.instance.getToken();
     _favoriteRepository
         .addOrDeleteFavoriteWithProductId(token: token!, productId: productId)
         .then((value) {
       emit(FavoriteProductAddedOrDeleted());
+      getFavoriteList();
     });
   }
 }

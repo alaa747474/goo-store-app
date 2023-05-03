@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_store_app/core/service/service_locator.dart';
+import 'package:goo_store_app/core/widgets/custom_app_bar.dart';
+import 'package:goo_store_app/core/widgets/erorr_text.dart';
 import 'package:goo_store_app/core/widgets/loading_indicator.dart';
 import 'package:goo_store_app/features/products/business_logic/product_cubit/product_cubit.dart';
 
@@ -14,14 +16,10 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductCubit(getIt.get<ProductRepository>())..getAllproducts(),
+      create: (context) =>
+          ProductCubit(getIt.get<ProductRepository>())..getAllproducts(),
       child: Scaffold(
-         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Theme.of(context).cardColor,
-          centerTitle: true,
-          title: Text('Products',style: Theme.of(context).textTheme.bodyLarge,),
-        ),
+        appBar: const CustomAppBar(text: 'Products'),
         body: BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             if (state is ProductsLoading) {
@@ -33,7 +31,7 @@ class ProductsScreen extends StatelessWidget {
                 child: ProductsGridView(products: state.products),
               );
             }
-            return Container();
+            return const ErrorText();
           },
         ),
       ),
