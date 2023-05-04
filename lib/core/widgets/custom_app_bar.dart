@@ -27,7 +27,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 Icons.arrow_back,
                 color: Theme.of(context).dividerColor,
               )),
-     // elevation: 0,
+      elevation: 0,
       backgroundColor: Theme.of(context).cardColor,
       centerTitle: true,
       title: Text(

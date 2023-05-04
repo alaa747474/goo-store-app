@@ -10,3 +10,9 @@ class UserLoggedInSuccessfully extends AuthState {
 
   UserLoggedInSuccessfully(this.loginModel);
 }
+
+class UserTokenLoaded extends AuthState {
+  final String ?token;
+
+  UserTokenLoaded(this.token);
+}

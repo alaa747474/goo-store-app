@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:goo_store_app/core/cache/app_secure_storage.dart';
 import 'package:goo_store_app/features/auth/data/models/login_model.dart';
 import 'package:goo_store_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:meta/meta.dart';
@@ -30,4 +31,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(UserLoggedInSuccessfully(value));
     });
   }
+
+ void getUserToken(){
+  AppSecureStorage.instance.getToken().then((value) {
+    emit(UserTokenLoaded(value!));
+  });
+ }
 }

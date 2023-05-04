@@ -5,16 +5,12 @@ import 'package:goo_store_app/features/favorite/presentation/screens/favorite_sc
 import 'package:goo_store_app/features/products/presentation/screens/products_screen.dart';
 import 'package:meta/meta.dart';
 
+import '../../../profile/presentation/screens/profile_screen.dart';
+
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
-  bool isDark = true;
-  changeAAppTheme() {
-    isDark = !isDark;
-    emit(ChangeAppThemec());
-  }
-
   int selectedIndex = 0;
 
   List screens = const [
@@ -22,7 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
     ProductsScreen(),
      CartScreen(),
     FavoriteScreen(),
-    CategoriesScreen(),
+    ProfileScreen()
   ];
   changeIndex(int index) {
     selectedIndex = index;

@@ -24,7 +24,5 @@ Dio dioSetUp() {
     ..options.baseUrl = AppEndPoints.baseUrl
     ..options.connectTimeout = const Duration(seconds: 40)
     ..options.receiveTimeout = const Duration(seconds: 40);
-  
-
   return dio;
 }
