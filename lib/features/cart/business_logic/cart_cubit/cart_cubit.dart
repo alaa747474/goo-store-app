@@ -16,6 +16,8 @@ class CartCubit extends Cubit<CartState> {
     String? token = await AppSecureStorage.instance.getToken();
     _cartRepository.getCart(token: token!).then((cart) {
       emit(CartLoaded(cart));
+    }).catchError((error){
+      emit(CartFailure(error));
     });
   }
   Future<void>addOrRemoveCartWithProductId({required num productId})async{

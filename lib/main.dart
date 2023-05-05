@@ -4,11 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:goo_store_app/core/config/app_router.dart';
 import 'package:goo_store_app/core/config/theme.dart';
+import 'package:goo_store_app/core/service/dio_helper.dart';
 import 'package:goo_store_app/core/service/service_locator.dart';
 import 'package:goo_store_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:goo_store_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:goo_store_app/features/home/business_logic/home_cubit/home_cubit.dart';
 import 'package:goo_store_app/features/home/presentation/screens/home_screen.dart';
+import 'package:goo_store_app/features/payment/business_logic/payment_cubit/payment_cubit.dart';
+import 'package:goo_store_app/features/payment/data/repositories/payment_repository.dart';
 import 'package:goo_store_app/features/profile/business_logic/cubit/setting_cubit.dart';
 import 'features/auth/business_logic/auth_cubit/auth_cubit.dart';
 
@@ -37,6 +40,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) =>
                     AuthCubit(getIt.get<AuthRepository>())..getUserToken()),
+            BlocProvider(create: (_)=>PaymentCubit(PaymentRepository(getIt.get<DioHelper>()))..getPaymentAuthToken())
           ],
           child: BlocBuilder<SettingCubit, SettingState>(
             builder: (context, state) {

@@ -10,6 +10,7 @@ import 'package:goo_store_app/features/categories/data/models/category.dart';
 import 'package:goo_store_app/features/categories/data/repositories/category_repository.dart';
 import 'package:goo_store_app/features/categories/presentation/screens/category_products_screen.dart';
 import 'package:goo_store_app/features/home/presentation/screens/home_screen.dart';
+import 'package:goo_store_app/features/payment/presentation/screens/check_out_screen.dart';
 import 'package:goo_store_app/features/products/data/models/product.dart';
 import 'package:goo_store_app/features/products/presentation/screens/product_details_screen.dart';
 
@@ -54,6 +55,9 @@ class AppRouter {
         final product = settings.arguments as Product;
         return MaterialPageRoute(
             builder: (_) => ProductDetailsScreen(product: product));
+
+      case AppRoutes.checkoutScreen:
+      return MaterialPageRoute(builder: (_)=>const CheckoutScreen());
     }
     return null;
   }

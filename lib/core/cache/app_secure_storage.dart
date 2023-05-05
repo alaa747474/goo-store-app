@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class AppSecureStorage {
   AppSecureStorage._();
   static const String tokenKey='TOKEN';
+  static const String authToken='PAYMENTAUTHTOKEN';
   static final instance = AppSecureStorage._();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   Future<void> saveCurrentUserData(

@@ -1,15 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:goo_store_app/core/constants/end_points.dart';
 
 class DioHelper {
   final Dio _dio;
   DioHelper(this._dio);
 
+  static const String _baseUrl = AppEndPoints.baseUrl;
   Future<Response> getData(
-      {required String endPoint,
+      {String? endPoint = '',
+      String? baseUrl = _baseUrl,
       String? token,
       String? lang = 'en',
       Map<String, dynamic>? queryParameters}) async {
-    Response response = await _dio.get(endPoint,
+    Response response = await _dio.get(baseUrl! + endPoint!,
         queryParameters: queryParameters,
         options: Options(headers: {
           'Content-Type': 'application/json',
@@ -20,8 +23,11 @@ class DioHelper {
   }
 
   Future<Response> postData(
-      {required String endPoint, dynamic data, String? token}) async {
-    Response response = await _dio.post(endPoint,
+      {required String endPoint,
+      String? baseUrl = _baseUrl,
+      dynamic data,
+      String? token}) async {
+    Response response = await _dio.post(baseUrl! + endPoint,
         data: data,
         options: Options(headers: {
           'authorization': token ?? '',
@@ -31,8 +37,11 @@ class DioHelper {
   }
 
   Future<Response> putData(
-      {required String endPoint, dynamic data, String? token}) async {
-    Response response = await _dio.put(endPoint,
+      {String? endPoint = '',
+      String? baseUrl = _baseUrl,
+      dynamic data,
+      String? token}) async {
+    Response response = await _dio.put(baseUrl! + endPoint!,
         data: data,
         options: Options(headers: {
           'authorization': token ?? '',
@@ -41,8 +50,11 @@ class DioHelper {
     return response;
   }
 
-  Future<Response> deleteData({required String endPoint, String? token}) async {
-    Response response = await _dio.delete(endPoint,
+  Future<Response> deleteData(
+      {String? endPoint = "",
+      String? baseUrl = _baseUrl,
+      String? token}) async {
+    Response response = await _dio.delete(baseUrl! + endPoint!,
         options: Options(headers: {
           'authorization': token ?? '',
           'Content-Type': 'application/json'

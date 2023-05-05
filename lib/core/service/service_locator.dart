@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:goo_store_app/core/constants/end_points.dart';
 import 'package:goo_store_app/core/service/dio_helper.dart';
 import 'package:goo_store_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:goo_store_app/features/cart/data/repositories/cart_repository.dart';
@@ -21,8 +20,8 @@ setUpServiceLocator() {
 Dio dioSetUp() {
   Dio dio = Dio();
   dio
-    ..options.baseUrl = AppEndPoints.baseUrl
     ..options.connectTimeout = const Duration(seconds: 40)
-    ..options.receiveTimeout = const Duration(seconds: 40);
+    ..options.receiveTimeout = const Duration(seconds: 40)
+    ..options.receiveDataWhenStatusError=true;
   return dio;
 }

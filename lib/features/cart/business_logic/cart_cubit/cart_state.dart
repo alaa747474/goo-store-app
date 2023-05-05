@@ -17,3 +17,8 @@ class CartProductAddedOrDeleted extends CartState {
   CartProductAddedOrDeleted(this.message);
 }
 class CartUpdated extends CartState {}
+class CartFailure extends CartState {
+  final String error;
+
+  CartFailure(this.error);
+}

@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          SettingItem(onPressed: () {}, text: 'My oreders'),
+          SettingItem(onPressed: (){}, text: 'Orders'),
           SettingItem(onPressed: () {}, text: 'Log out')
         ],
       ),
