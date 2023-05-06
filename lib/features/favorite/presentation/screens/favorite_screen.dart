@@ -16,29 +16,24 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          FavoriteCubit(FavoriteRepository(getIt.get<DioHelper>()))
-            ..getFavoriteList(),
-      child: Scaffold(
-        appBar: const CustomAppBar(text: 'Favorite'),
-        body: BlocBuilder<FavoriteCubit, FavoriteState>(
-          builder: (context, state) {
-            if (state is FavoriteLoading) {
-              return const LoadingIndicator();
-            }
-            if (state is FavoriteLoaded) {
-              List<ProductData> favoriteProducts=state.favorite.data!.productsList!;
-              return ListView.builder(
-                itemCount: state.favorite.data!.productsList!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return FavoriteProductCard(favoriteProduct: favoriteProducts[index].product!);
-                },
-              );
-            }
-            return const ErrorText();
-          },
-        ),
+    return Scaffold(
+      appBar: const CustomAppBar(text: 'Favorite'),
+      body: BlocBuilder<FavoriteCubit, FavoriteState>(
+        builder: (context, state) {
+          if (state is FavoriteLoading) {
+            return const LoadingIndicator();
+          }
+          if (state is FavoriteLoaded) {
+            List<ProductData> favoriteProducts=state.favorite.data!.productsList!;
+            return ListView.builder(
+              itemCount: state.favorite.data!.productsList!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return FavoriteProductCard(favoriteProduct: favoriteProducts[index].product!);
+              },
+            );
+          }
+          return const ErrorText();
+        },
       ),
     );
   }

@@ -31,15 +31,10 @@ class PaymentRepository extends BasePaymentRepository {
   @override
   Future<String> getFinalPaymentToken(
       {required OrderRegistrationDetails orderRegistrationDetails}) async {
-       late Response response;
-  try {
-       response = await _dioHelper.postData(
+    Response response = await _dioHelper.postData(
         baseUrl: AppEndPoints.paymentBaseUrl,
         endPoint: AppEndPoints.paymentAcceptance,
-        data: orderRegistrationDetails.toString());
-  } catch (e) {
-    debugPrint('[ERROR ===> $e]');
-  }
+        data: orderRegistrationDetails.toJson());
     return response.data['token'];
   }
 }

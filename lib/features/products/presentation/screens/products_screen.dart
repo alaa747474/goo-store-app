@@ -15,25 +15,21 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          ProductCubit(getIt.get<ProductRepository>())..getAllproducts(),
-      child: Scaffold(
-        appBar: const CustomAppBar(text: 'Products'),
-        body: BlocBuilder<ProductCubit, ProductState>(
-          builder: (context, state) {
-            if (state is ProductsLoading) {
-              return const LoadingIndicator();
-            }
-            if (state is ProductsLoaded) {
-              return Padding(
-                padding: EdgeInsets.all(5.h),
-                child: ProductsGridView(products: state.products),
-              );
-            }
-            return const ErrorText();
-          },
-        ),
+    return Scaffold(
+      appBar: const CustomAppBar(text: 'Products'),
+      body: BlocBuilder<ProductCubit, ProductState>(
+        builder: (context, state) {
+          if (state is ProductsLoading) {
+            return const LoadingIndicator();
+          }
+          if (state is ProductsLoaded) {
+            return Padding(
+              padding: EdgeInsets.all(5.h),
+              child: ProductsGridView(products: state.products),
+            );
+          }
+          return const ErrorText();
+        },
       ),
     );
   }

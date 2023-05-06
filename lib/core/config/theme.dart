@@ -6,7 +6,7 @@ class AppTheme {
     switch (isDarkTheme) {
       case true:
         return ThemeData(
-           bottomSheetTheme:const BottomSheetThemeData(backgroundColor: Colors.transparent),
+           bottomSheetTheme:const BottomSheetThemeData(backgroundColor: Colors.transparent,elevation: 1),
           hintColor: const Color.fromARGB(255, 169, 169, 169),
           primaryColor: const Color(0xffff7c2e),
           cardColor: const Color(0xff2A2C36),

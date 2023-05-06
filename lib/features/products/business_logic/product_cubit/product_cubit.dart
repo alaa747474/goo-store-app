@@ -13,7 +13,7 @@ class ProductCubit extends Cubit<ProductState> {
   void getAllproducts() async {
     emit(ProductsLoading());
     String? token =
-        await AppSecureStorage.instance.getCurrentUserData(key: 'TOKEN');
+        await AppSecureStorage.instance.getToken();
     _productRepository.getAllproducts(token: token!).then((products) {
       emit(ProductsLoaded(products));
     });

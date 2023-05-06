@@ -14,6 +14,7 @@ import 'package:goo_store_app/features/payment/business_logic/payment_cubit/paym
 import 'package:goo_store_app/features/payment/data/repositories/payment_repository.dart';
 import 'package:goo_store_app/features/profile/business_logic/cubit/setting_cubit.dart';
 import 'features/auth/business_logic/auth_cubit/auth_cubit.dart';
+import 'features/home/data/repositories/home_repository.dart';
 
 void main() {
   setUpServiceLocator();
@@ -31,16 +32,14 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (context) => HomeCubit(),
-            ),
+            
             BlocProvider(
               create: (context) => SettingCubit()..getSavedTheme(),
             ),
             BlocProvider(
                 create: (context) =>
                     AuthCubit(getIt.get<AuthRepository>())..getUserToken()),
-            BlocProvider(create: (_)=>PaymentCubit(PaymentRepository(getIt.get<DioHelper>()))..getPaymentAuthToken())
+            
           ],
           child: BlocBuilder<SettingCubit, SettingState>(
             builder: (context, state) {

@@ -14,19 +14,19 @@ class BillingData {
   String? state;
 
   BillingData(
-      {this.apartment,
-      this.email,
-      this.floor,
-      this.firstName,
-      this.street,
-      this.building,
+      {this.apartment='NA',
+      this.email='NA',
+      this.floor='NA',
+      this.firstName='NA',
+      this.street='NA',
+      this.building='NA',
       this.phoneNumber,
-      this.shippingMethod,
-      this.postalCode,
-      this.city,
-      this.country,
-      this.lastName,
-      this.state});
+      this.shippingMethod='NA',
+      this.postalCode='NA',
+      this.city='NA',
+      this.country='NA',
+      this.lastName='NA',
+      this.state='NA'});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

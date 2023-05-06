@@ -9,7 +9,9 @@ import 'package:goo_store_app/features/categories/business_logic/category_cubit/
 import 'package:goo_store_app/features/categories/data/models/category.dart';
 import 'package:goo_store_app/features/categories/data/repositories/category_repository.dart';
 import 'package:goo_store_app/features/categories/presentation/screens/category_products_screen.dart';
+import 'package:goo_store_app/features/home/data/repositories/home_repository.dart';
 import 'package:goo_store_app/features/home/presentation/screens/home_screen.dart';
+import 'package:goo_store_app/features/payment/presentation/screens/card_screen.dart';
 import 'package:goo_store_app/features/payment/presentation/screens/check_out_screen.dart';
 import 'package:goo_store_app/features/products/data/models/product.dart';
 import 'package:goo_store_app/features/products/presentation/screens/product_details_screen.dart';
@@ -37,7 +39,7 @@ class AppRouter {
       case AppRoutes.homeScreen:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => HomeCubit(),
+                  create: (context) => HomeCubit(getIt.get<HomeRepository>()),
                   child: const HomeScreen(),
                 ));
       case AppRoutes.categoryProductsScreen:
@@ -57,7 +59,11 @@ class AppRouter {
             builder: (_) => ProductDetailsScreen(product: product));
 
       case AppRoutes.checkoutScreen:
-      return MaterialPageRoute(builder: (_)=>const CheckoutScreen());
+      final total=settings.arguments as num;
+      return MaterialPageRoute(builder: (_)=> CheckoutScreen(totalAmount: total,));
+      case AppRoutes.cardScreen:
+      final finalToken=settings.arguments as String;
+      return MaterialPageRoute(builder: (_)=>  CardScreen(finalToken: finalToken,));
     }
     return null;
   }

@@ -11,10 +11,11 @@ part 'payment_state.dart';
 class PaymentCubit extends Cubit<PaymentState> {
   PaymentCubit(this._paymentRepository) : super(PaymentInitial());
   final PaymentRepository _paymentRepository;
-   String? authToken;
+   late String authToken;
   void getPaymentAuthToken() {
     emit(PaymentLoading());
     _paymentRepository.getPaymentAuthToken().then((value) {
+      debugPrint('[PAYMENT AUTH TOKEN LOADED ====> TOKEN=$value]');
       emit(PaymentAuthTokenLoaded(value));
     });
   }
@@ -36,6 +37,9 @@ class PaymentCubit extends Cubit<PaymentState> {
     });
   }
   void getAuthTokenFromSecureStroage()async{
-    authToken=await AppSecureStorage.instance.getCurrentUserData(key: AppSecureStorage.authToken);
+    await AppSecureStorage.instance.getCurrentUserData(key: AppSecureStorage.authToken).then((value) {
+      authToken=value!;
+    });
+
   }
 }

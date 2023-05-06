@@ -11,3 +11,13 @@ class ChangeBottomNavIndex extends HomeState {
 class ChangeAppThemec extends HomeState {
   
 }
+class HomeDataLoaded extends HomeState{
+ final HomeData homeData;
+
+  HomeDataLoaded(this.homeData); 
+}
+class HomeFailur extends HomeState {
+  final String error;
+
+  HomeFailur(this.error);
+}
