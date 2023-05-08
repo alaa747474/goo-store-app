@@ -6,4 +6,5 @@ class AppRoutes {
   static const String productDetailsScreen = '/product_details_screen';
   static const String checkoutScreen = '/checkout_screen';
   static const String cardScreen = '/card_screen';
+  static const String productScreen = '/product_screen';
 }

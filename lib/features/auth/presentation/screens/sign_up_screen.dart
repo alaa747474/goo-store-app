@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_store_app/core/cache/app_secure_storage.dart';
+import 'package:goo_store_app/core/constants/app_routes.dart';
 import 'package:goo_store_app/core/widgets/custom_button.dart';
 import 'package:goo_store_app/features/auth/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:goo_store_app/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:goo_store_app/features/auth/presentation/widgets/suggest_button.dart';
 
 import '../../../../core/widgets/loading_indicator.dart';
 
@@ -44,16 +46,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset('assets/images/lock.png'),
-              SizedBox(
-                height: 20.h,
-              ),
+              SizedBox(height: 20.h,),
               Text(
                 'Sign up',
                 style: Theme.of(context).textTheme.labelLarge,
               ),
-              SizedBox(
-                height: 10.h,
-              ),
+              SizedBox(height: 10.h,),
               AuthTextField(
                 labelText: 'Name',
                 controller: nameController,
@@ -72,14 +70,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 labelText: 'phone',
                 controller: phoneController,
               ),
-              const SizedBox(
-                height: 50,
-              ),
+              SizedBox(height: 5.h,),
+              const SuggestButton(),
+              const SizedBox(height: 50,),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is UserLoggedInSuccessfully) {
                     AppSecureStorage.instance.saveCurrentUserData(
                         key: 'TOKEN', data: state.loginModel.userData!.token!);
+                        Navigator.pushNamedAndRemoveUntil(context, AppRoutes.homeScreen, (route) => false);
                   }
                 },
                 builder: (context, state) {

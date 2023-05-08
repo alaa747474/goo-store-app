@@ -11,14 +11,19 @@ class CartRepository implements BaseCartRepository {
 
   @override
   Future<String> addOrRemoveCartWithProductId(
-      {required String token, required num productId})async {
-        Response response =await _dioHelper.postData(endPoint: AppEndPoints.carts,data: {'product_id':productId},token: token,);
-        return response.data['message'];
-      }
+      {required String token, required num productId}) async {
+    Response response = await _dioHelper.postData(
+      endPoint: AppEndPoints.carts,
+      data: {'product_id': productId},
+      token: token,
+    );
+    return response.data['message'];
+  }
 
   @override
   Future<Cart> getCart({required String token}) async {
-    Response response = await _dioHelper.getData(endPoint: AppEndPoints.carts,token: token);
+    Response response =
+        await _dioHelper.getData(endPoint: AppEndPoints.carts, token: token);
     return Cart.fromJson(response.data);
   }
 
@@ -27,10 +32,10 @@ class CartRepository implements BaseCartRepository {
       {required String token,
       required num productId,
       required num quantity,
-      required num cartId})async {
- await _dioHelper.putData(endPoint: '${AppEndPoints.carts}/$cartId',token: token,data: {
-  'product_id': productId,
-    'quantity': quantity
- });
+      required num cartId}) async {
+    await _dioHelper.putData(
+        endPoint: '${AppEndPoints.carts}/$cartId',
+        token: token,
+        data: {'product_id': productId, 'quantity': quantity});
   }
 }

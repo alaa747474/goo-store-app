@@ -21,3 +21,6 @@ class HomeFailur extends HomeState {
 
   HomeFailur(this.error);
 }
+class HomeLoading extends HomeInitial {
+  
+}

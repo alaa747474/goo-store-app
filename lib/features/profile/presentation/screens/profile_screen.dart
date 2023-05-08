@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:goo_store_app/features/profile/business_logic/cubit/setting_cubit.dart';
+import 'package:goo_store_app/core/widgets/loading_indicator.dart';
+import 'package:goo_store_app/features/profile/business_logic/profile_cubit/profile_cubit.dart';
+import 'package:goo_store_app/features/profile/business_logic/settings_cubit/setting_cubit.dart';
 import 'package:goo_store_app/features/profile/presentation/widgets/setting_item.dart';
 import 'package:goo_store_app/features/profile/presentation/widgets/user_information_card.dart';
 
@@ -18,7 +20,14 @@ class ProfileScreen extends StatelessWidget {
             'My Profile',
             style: Theme.of(context).textTheme.labelLarge,
           ),
-          const UserInformationCard(),
+           BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              if (state is ProfileLoaded) {
+                return UserInformationCard(profile: state.profile,);
+              }
+              return const LoadingIndicator();
+            },
+          ),
           BlocBuilder<SettingCubit, SettingState>(
             builder: (context, state) {
               bool isDark = context.read<SettingCubit>().isDark;
@@ -31,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          SettingItem(onPressed: (){}, text: 'Orders'),
+          SettingItem(onPressed: () {}, text: 'Orders'),
           SettingItem(onPressed: () {}, text: 'Log out')
         ],
       ),

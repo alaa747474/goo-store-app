@@ -32,9 +32,11 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
- void getUserToken(){
-  AppSecureStorage.instance.getToken().then((value) {
-    emit(UserTokenLoaded(value!));
-  });
- }
+  void getUserToken() {
+    AppSecureStorage.instance.getToken().then((value) {
+      if (value != null) {
+        emit(UserTokenLoaded(value));
+      }
+    });
+  }
 }

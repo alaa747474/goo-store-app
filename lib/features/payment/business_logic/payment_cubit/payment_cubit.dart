@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:goo_store_app/core/cache/app_secure_storage.dart';
 import 'package:goo_store_app/features/payment/data/models/order.dart';
 import 'package:goo_store_app/features/payment/data/models/order_registration_details.dart';
 import 'package:goo_store_app/features/payment/data/models/payment_auth.dart';
@@ -36,10 +35,5 @@ class PaymentCubit extends Cubit<PaymentState> {
       emit(PaymentFinalTokenLoaded(value));
     });
   }
-  void getAuthTokenFromSecureStroage()async{
-    await AppSecureStorage.instance.getCurrentUserData(key: AppSecureStorage.authToken).then((value) {
-      authToken=value!;
-    });
 
-  }
 }

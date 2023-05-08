@@ -17,20 +17,23 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-    style: TextStyle(color: Theme.of(context).dividerColor),
-      controller: controller,
-      validator: validator,
-      keyboardType: keyboardType,
-      cursorColor: Theme.of(context).primaryColor,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10.r),
-          filled: true,
-          fillColor: Theme.of(context).cardColor,
-          hintText: hintText,
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.r),
-              borderSide: BorderSide.none)),
+    return Padding(
+      padding:  EdgeInsets.only(bottom: 10.h,),
+      child: TextFormField(
+      style: TextStyle(color: Theme.of(context).dividerColor),
+        controller: controller,
+        validator: validator,
+        keyboardType: keyboardType,
+        cursorColor: Theme.of(context).primaryColor,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(10.r),
+            filled: true,
+            fillColor: Theme.of(context).cardColor,
+            hintText: hintText,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide.none)),
+      ),
     );
   }
 }

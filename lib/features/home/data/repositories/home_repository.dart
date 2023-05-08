@@ -9,8 +9,8 @@ class HomeRepository extends BaseHomeRepository {
 
   HomeRepository(this._dioHelper);
   @override
-  Future<HomeData> getHomeData() async {
-    Response response = await _dioHelper.getData(endPoint: AppEndPoints.home);
+  Future<HomeData> getHomeData({required String token}) async {
+    Response response = await _dioHelper.getData(endPoint: AppEndPoints.home,token: token);
     return HomeData.fromJson(response.data);
   }
 }

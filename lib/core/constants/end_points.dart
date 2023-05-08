@@ -15,4 +15,5 @@ class AppEndPoints {
   static const String favorites = 'favorites';
   static const String carts = 'carts';
   static const String home = 'home';
+  static const String profile='profile';
 }

@@ -15,6 +15,7 @@ import 'package:goo_store_app/features/payment/presentation/screens/card_screen.
 import 'package:goo_store_app/features/payment/presentation/screens/check_out_screen.dart';
 import 'package:goo_store_app/features/products/data/models/product.dart';
 import 'package:goo_store_app/features/products/presentation/screens/product_details_screen.dart';
+import 'package:goo_store_app/features/products/presentation/screens/products_screen.dart';
 
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/home/business_logic/home_cubit/home_cubit.dart';
@@ -64,6 +65,8 @@ class AppRouter {
       case AppRoutes.cardScreen:
       final finalToken=settings.arguments as String;
       return MaterialPageRoute(builder: (_)=>  CardScreen(finalToken: finalToken,));
+      case AppRoutes.productScreen:
+      return MaterialPageRoute(builder: (_)=> const ProductsScreen());
     }
     return null;
   }

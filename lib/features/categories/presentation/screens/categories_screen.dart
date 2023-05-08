@@ -8,9 +8,7 @@ import 'package:goo_store_app/features/categories/business_logic/category_cubit/
 import 'package:goo_store_app/features/categories/data/repositories/category_repository.dart';
 import 'package:goo_store_app/features/categories/presentation/widgets/category_grid_view.dart';
 import 'package:goo_store_app/features/products/business_logic/product_cubit/product_cubit.dart';
-import 'package:goo_store_app/features/products/data/models/product.dart';
 import 'package:goo_store_app/features/products/data/repositories/product_repository.dart';
-import 'package:goo_store_app/features/products/presentation/widgets/products_grid_view.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -41,29 +39,6 @@ class CategoriesScreen extends StatelessWidget {
               }
               if (state is CategoriesLoaded) {
                 return CategoryGridView(categories: state.categories);
-              }
-              return Container();
-            },
-          ),
-          Text(
-            'Sale',
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          Text(
-            'Supper summer sale',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          SizedBox(height: 10.h,),
-          BlocBuilder<ProductCubit, ProductState>(
-            builder: (context, state) {
-              if (state is ProductsLoading) {
-                return const LoadingIndicator();
-              }
-              if (state is ProductsLoaded) {
-                List<Product>saleProducts=(state.products
-                              .where((element) => element.discount != 0))
-                          .toList();
-                return ProductsGridView(products: saleProducts,);
               }
               return Container();
             },
