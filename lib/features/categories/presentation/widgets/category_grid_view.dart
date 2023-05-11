@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:goo_store_app/features/categories/data/models/category.dart';
 import 'package:goo_store_app/features/categories/presentation/widgets/category_card.dart';
 
@@ -13,17 +12,7 @@ class CategoryGridView extends StatelessWidget {
       shrinkWrap: true,
       physics:const ScrollPhysics(),
       padding: EdgeInsets.symmetric(vertical: 10.h),
-      gridDelegate: SliverQuiltedGridDelegate(
-        crossAxisCount: 4,
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 5,
-        repeatPattern: QuiltedGridRepeatPattern.inverted,
-        pattern: const [
-          QuiltedGridTile(4, 4),
-          QuiltedGridTile(2, 2),
-          QuiltedGridTile(2, 2),
-        ],
-      ),
+      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(mainAxisExtent: 150.r,crossAxisCount: 1,childAspectRatio: 2.5,mainAxisSpacing: 10.h,),
       childrenDelegate: SliverChildBuilderDelegate((context, index) {
         return CategoryCard(category: categories[index]);
       }, childCount: categories.length),

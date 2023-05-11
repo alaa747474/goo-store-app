@@ -32,45 +32,48 @@ class ProductDetailsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        body: ListView(
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          children: [
-            ProductImagesListView(images: product.images!),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: 5.h, left: 10.w, right: 10.w, bottom: 70.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                          child: Text(
-                        product.name!,
-                        style: Theme.of(context).textTheme.titleLarge,
-                        softWrap: true,
-                      )),
-                      FavoriteButton(
-                          inFavorites: product.inFavorites!, onPressed: () {})
-                    ],
-                  ),
-                  OldNewPriceRow(
-                      oldPrice: product.oldPrice.toString(),
-                      newPrice: product.price.toString(),
-                      discount: product.discount!),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Text(
-                    product.description!,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
-              ),
-            )
-          ],
+        body: Hero(
+          tag: product.id!,
+          child: ListView(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              ProductImagesListView(images: product.images!),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: 5.h, left: 10.w, right: 10.w, bottom: 70.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                            child: Text(
+                          product.name!,
+                          style: Theme.of(context).textTheme.titleLarge,
+                          softWrap: true,
+                        )),
+                        FavoriteButton(
+                            inFavorites: product.inFavorites!, onPressed: () {})
+                      ],
+                    ),
+                    OldNewPriceRow(
+                        oldPrice: product.oldPrice.toString(),
+                        newPrice: product.price.toString(),
+                        discount: product.discount!),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    Text(
+                      product.description!,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
         bottomSheet: Container(
           height: 60.h,

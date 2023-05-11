@@ -1,5 +1,7 @@
 class AppEndPoints {
+  static const String cloudMessagingServerKey='AAAAWXB5olE:APA91bFCGGWU1wIQtIjxlY9cfh1kT5ux-q8LC96jjDa2o6_aHpQWAHrt9UdkMZF209RzcaoPJofCHoJ5Xbr-uA4T1YjOju6eG2WuVGc5ZrCmRdnGmnrZTq4PKz0fv5_WXAWX1uVMhdN6';
   static const String baseUrl = 'https://student.valuxapps.com/api/';
+  static const String fcmbaseUrl = 'https://fcm.googleapis.com/fcm/send';
   static const String paymentBaseUrl = 'https://accept.paymob.com/api/';
   static const int paymentIntegrationId = 3721334;
   static const String paymentAuth = 'auth/tokens';

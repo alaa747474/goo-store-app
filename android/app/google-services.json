@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "384139108945",
+    "project_id": "goo-store",
+    "storage_bucket": "goo-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384139108945:android:effde577bf3a1d15764e70",
+        "android_client_info": {
+          "package_name": "com.example.goo_store_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384139108945-2v4gu63ivggorbmg9epli6n176580bea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk27AyG-cfcqfvbVp-Y0VAmqEAjMwilpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384139108945-2v4gu63ivggorbmg9epli6n176580bea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

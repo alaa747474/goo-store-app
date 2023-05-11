@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,39 +32,59 @@ class _HomeDataScreenState extends State<HomeDataScreen> {
         builder: (context, state) {
           if (state is HomeDataLoaded) {
             return ListView(
-              padding: EdgeInsets.only(bottom: 20.h,top: 10.h),
+              padding: EdgeInsets.only(bottom: 20.h, top: 10.h),
               shrinkWrap: true,
-              physics:const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               children: [
                 BannersCarouselSlider(banners: state.homeData.data!.banners!),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Sale',style: Theme.of(context).textTheme.labelLarge,),
-                          Text('Supper summer sale',style: Theme.of(context).textTheme.bodySmall,),
+                          Text(
+                            'Sale',
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            'Supper summer sale',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
                         ],
                       ),
-                      TextButton(onPressed: (){Navigator.pushNamed(context,AppRoutes.productScreen);}, child: Text('view more',style: Theme.of(context).textTheme.bodyMedium,)),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.productScreen);
+                          },
+                          child: Text(
+                            'view more',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )),
                     ],
                   ),
                 ),
-                
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10.w),
-                  child: ProductsGridView(length: 4,products: state.homeData.data!.products!.where((element) => element.discount!=0).toList()),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: ProductsGridView(
+                      length: 4,
+                      products: state.homeData.data!.products!
+                          .where((element) => element.discount != 0)
+                          .toList()),
                 )
-               ],
+              ],
             );
           }
           if (state is HomeFailur) {
-            return ErrorText(text: state.error,);
+            return ErrorText(
+              text: state.error,
+            );
           }
-          return  const LoadingIndicator();
+          return const LoadingIndicator();
         },
       ),
     );

@@ -19,64 +19,67 @@ class ProductCard extends StatelessWidget {
       onTap: () => Navigator.pushNamed(
           context, AppRoutes.productDetailsScreen,
           arguments: product),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              ConstrainedBox(
-                constraints:
-                    BoxConstraints(maxHeight: 180.h, minHeight: 135.h),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.r),
-                      image: DecorationImage(
-                          image: NetworkImage(product.image!),
-                          fit: BoxFit.cover)),
+      child: Hero(
+        tag: product.id!,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                ConstrainedBox(
+                  constraints:
+                      BoxConstraints(maxHeight: 180.h, minHeight: 135.h),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.r),
+                        image: DecorationImage(
+                            image: NetworkImage(product.image!),
+                            fit: BoxFit.cover)),
+                  ),
                 ),
-              ),
-              DiscountContainer(discount: product.discount!),
-              Positioned(
-                top: 160.h,
-                left: 120.w,
-                child: BlocConsumer<FavoriteCubit, FavoriteState>(
-                  listener: (context, state) {
-                    if (state is FavoriteProductAddedOrDeleted) {
-                      context.read<ProductCubit>().getAllproducts();
-                      context.read<HomeCubit>().getHomeData();
-                    }
-                  },
-                  builder: (context, state) {
-                    return FavoriteButton(
-                      inFavorites: product.inFavorites!,
-                      onPressed: () {
-                        context
-                            .read<FavoriteCubit>()
-                            .addOrDeleteFavoriteWithProductId(
-                                productId: product.id!);
-                      },
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: 30.w, top: 5.h, bottom: 5.h),
-            child: Text(
-              product.name!,
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyLarge,
+                DiscountContainer(discount: product.discount!),
+                Positioned(
+                  top: 160.h,
+                  left: 120.w,
+                  child: BlocConsumer<FavoriteCubit, FavoriteState>(
+                    listener: (context, state) {
+                      if (state is FavoriteProductAddedOrDeleted) {
+                        context.read<ProductCubit>().getAllproducts();
+                        context.read<HomeCubit>().getHomeData();
+                      }
+                    },
+                    builder: (context, state) {
+                      return FavoriteButton(
+                        inFavorites: product.inFavorites!,
+                        onPressed: () {
+                          context
+                              .read<FavoriteCubit>()
+                              .addOrDeleteFavoriteWithProductId(
+                                  productId: product.id!);
+                        },
+                      );
+                    },
+                  ),
+                )
+              ],
             ),
-          ),
-          OldNewPriceRow(
-              discount: product.discount!,
-              oldPrice: product.discount == 0 ? '' : product.price.toString(),
-              newPrice: product.oldPrice.toString())
-        ],
+            Padding(
+              padding: EdgeInsets.only(right: 30.w, top: 5.h, bottom: 5.h),
+              child: Text(
+                product.name!,
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            OldNewPriceRow(
+                discount: product.discount!,
+                oldPrice: product.discount == 0 ? '' : product.price.toString(),
+                newPrice: product.oldPrice.toString())
+          ],
+        ),
       ),
     );
   }

@@ -9,25 +9,26 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>Navigator.pushNamed(context, AppRoutes.categoryProductsScreen,arguments: category),
+      onTap: () => Navigator.pushNamed(
+          context, AppRoutes.categoryProductsScreen,
+          arguments: category),
       child: Container(
-        decoration:  BoxDecoration(color: Colors.white,image: DecorationImage(image: NetworkImage(category.image!))),
-        child: Stack(
+        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        decoration: BoxDecoration(color: Theme.of(context).cardColor,borderRadius: BorderRadius.circular(10.r)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Theme.of(context).primaryColor.withOpacity(0.2),
-                  Colors.black.withOpacity(0.5),
-                ],
-              ))),
-            Align(alignment: Alignment.bottomCenter,child: Padding(
-              padding:  EdgeInsets.only(bottom: 15.h),
-              child: Text(category.name!.toUpperCase(),textAlign: TextAlign.center,style: Theme.of(context).textTheme.labelMedium,),
-            )),
+            Flexible(
+              flex: 1,
+              child: Image.network(
+                category.image!,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Center(child: Text(category.name!)),
+            ),
           ],
         ),
       ),

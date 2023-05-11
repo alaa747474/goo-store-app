@@ -8,9 +8,11 @@ class ProductImagesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
             height: 250.h,
+            width: MediaQuery.of(context).size.width,
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
+              shrinkWrap: false,
               itemCount: images.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(

@@ -10,6 +10,8 @@ import 'package:goo_store_app/features/categories/presentation/widgets/category_
 import 'package:goo_store_app/features/products/business_logic/product_cubit/product_cubit.dart';
 import 'package:goo_store_app/features/products/data/repositories/product_repository.dart';
 
+import '../../../../core/widgets/erorr_text.dart';
+
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
@@ -40,7 +42,7 @@ class CategoriesScreen extends StatelessWidget {
               if (state is CategoriesLoaded) {
                 return CategoryGridView(categories: state.categories);
               }
-              return Container();
+              return const ErrorText();
             },
           )
         ],

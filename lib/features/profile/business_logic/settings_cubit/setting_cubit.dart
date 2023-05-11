@@ -7,7 +7,7 @@ part 'setting_state.dart';
 class SettingCubit extends Cubit<SettingState> {
   SettingCubit() : super(SettingInitial());
   bool isDark = false;
-  void changeAppTheme() async{
+  void changeAppTheme() async {
     isDark = !isDark;
     AppSharedPreferences.instance.saveThemeBool(value: isDark);
     emit(AppThemeChanged());
@@ -15,8 +15,12 @@ class SettingCubit extends Cubit<SettingState> {
 
   void getSavedTheme() {
     AppSharedPreferences.instance.getThemeBool().then((value) {
-      isDark=value!;
-       emit(AppThemeChanged());
-    }) ;
+      if (value != null) {
+        isDark = value;
+      } else {
+        isDark = false;
+      }
+      emit(AppThemeChanged());
+    });
   }
 }
