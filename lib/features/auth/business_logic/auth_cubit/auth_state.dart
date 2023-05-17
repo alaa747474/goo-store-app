@@ -16,3 +16,9 @@ class UserTokenLoaded extends AuthState {
 
   UserTokenLoaded(this.token);
 }
+
+class AuthFailed  extends AuthState{
+  final String error;
+
+  AuthFailed(this.error);
+}

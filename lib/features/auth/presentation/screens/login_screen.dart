@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:goo_store_app/core/cache/app_secure_storage.dart';
 import 'package:goo_store_app/core/constants/app_routes.dart';
 import 'package:goo_store_app/core/widgets/custom_button.dart';
+import 'package:goo_store_app/core/widgets/erorr_text.dart';
 import 'package:goo_store_app/core/widgets/loading_indicator.dart';
 import 'package:goo_store_app/features/auth/business_logic/auth_cubit/auth_cubit.dart';
 import 'package:goo_store_app/features/auth/presentation/widgets/auth_text_field.dart';
@@ -70,6 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 },
                 builder: (context, state) {
+                  if (state is AuthFailed) {
+                    return ErrorText(text: state.error,);
+                  }
                   if (state is AuthLoading) {
                     return const LoadingIndicator();
                   }
