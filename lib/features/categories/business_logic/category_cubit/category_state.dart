@@ -17,8 +17,8 @@ class CategoryProdcutsLoaded extends CategoryState {
   final List<Product>categoryProducts;
   CategoryProdcutsLoaded(this.categoryProducts);
 }
-class CategoryFailToLoad extends CategoryState {
-  final String text;
+class CategoryFailure extends CategoryState {
+  final String error;
 
-  CategoryFailToLoad(this.text);
+  CategoryFailure(this.error);
 }

@@ -9,19 +9,24 @@ part 'category_state.dart';
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit(this._categoryRepository) : super(CategoryInitial());
   final CategoryRepository _categoryRepository;
-  void getAllCategories() {
+  Future<void> getAllCategories() async {
     emit(CategoriesLoading());
-    _categoryRepository.getAllCategories().then((categories) {
+    final data = await _categoryRepository.getAllCategories();
+    data.fold((error) {
+      emit(CategoryFailure(error.errorMessage));
+    }, (categories) {
       emit(CategoriesLoaded(categories));
     });
   }
 
-  void getCustomCategoryProducts({required int categoryId}) {
+  Future<void> getCustomCategoryProducts({required int categoryId}) async {
     emit(CategoriesLoading());
-    _categoryRepository
-        .getCustomCategoryProducts(categoryId: categoryId)
-        .then((products) {
-      emit(CategoryProdcutsLoaded(products));
+    final data = await _categoryRepository.getCustomCategoryProducts(
+        categoryId: categoryId);
+    data.fold((error) {
+      emit(CategoryFailure(error.errorMessage));
+    }, (categoryProducts) {
+      emit(CategoryProdcutsLoaded(categoryProducts));
     });
   }
 }
