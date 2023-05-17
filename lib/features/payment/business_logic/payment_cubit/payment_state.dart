@@ -22,3 +22,8 @@ class PaymentFinalTokenLoaded extends PaymentState {
 
   PaymentFinalTokenLoaded(this.paymentFinalTokenLoaded);
 }
+class PaymentFailure extends PaymentState {
+ final String error;
+
+  PaymentFailure(this.error); 
+}

@@ -1,13 +1,13 @@
 import 'package:goo_store_app/features/products/data/models/product.dart';
 
-class Order {
+class OrderModel {
   String? authToken;
   String? deliveryNeeded;
   String? amountCents;
   String? currency;
   List<Product>? items;
 
-  Order(
+  OrderModel(
       {this.authToken,
       this.deliveryNeeded,
       this.amountCents,

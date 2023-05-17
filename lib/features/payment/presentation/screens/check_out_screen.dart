@@ -75,7 +75,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     if (state is PaymentAuthTokenLoaded) {
                       context.read<PaymentCubit>().authToken =
                           state.paymentAuthToken.token;
-                      Order order = Order(
+                      OrderModel order = OrderModel(
                           authToken: state.paymentAuthToken.token,
                           amountCents: widget.totalAmount.toString(),
                           currency: 'EGP',

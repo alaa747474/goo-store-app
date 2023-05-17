@@ -10,30 +10,35 @@ part 'payment_state.dart';
 class PaymentCubit extends Cubit<PaymentState> {
   PaymentCubit(this._paymentRepository) : super(PaymentInitial());
   final PaymentRepository _paymentRepository;
-   late String authToken;
-  void getPaymentAuthToken() {
+  late String authToken;
+  Future<void> getPaymentAuthToken() async {
     emit(PaymentLoading());
-    _paymentRepository.getPaymentAuthToken().then((value) {
-      debugPrint('[PAYMENT AUTH TOKEN LOADED ====> TOKEN=$value]');
-      emit(PaymentAuthTokenLoaded(value));
+    final data = await _paymentRepository.getPaymentAuthToken();data.fold((error) {
+      emit(PaymentFailure(error.errorMessage));
+    }, (authToken) {
+      debugPrint('[PAYMENT AUTH TOKEN LOADED ====> TOKEN=$authToken]');
+      emit(PaymentAuthTokenLoaded(authToken));
     });
   }
 
-  void paymentOrderRegistration({required Order order}) {
-    _paymentRepository.paymentOrderRegistration(order: order).then((value) {
-      debugPrint('[ORDER REGISTRATION DONE ====> ID=$value]');
-      emit(PaymentOrderRegistrationDone(value));
+  Future<void> paymentOrderRegistration({required OrderModel order}) async {
+    final data =await _paymentRepository.paymentOrderRegistration(order: order);
+    data.fold((error) {
+      emit(PaymentFailure(error.errorMessage));
+    }, (orderId) {
+      debugPrint('[ORDER REGISTRATION DONE ====> ID=$orderId]');
+      emit(PaymentOrderRegistrationDone(orderId));
     });
   }
 
-  void getFinalPaymentToken(OrderRegistrationDetails orderRegistrationDetails) {
-    _paymentRepository
-        .getFinalPaymentToken(
-            orderRegistrationDetails: orderRegistrationDetails)
-        .then((value) {
-          debugPrint('[ORDER LAST TOKEN LOADED ====> TOKEN=$value]');
-      emit(PaymentFinalTokenLoaded(value));
+  Future<void> getFinalPaymentToken(
+      OrderRegistrationDetails orderRegistrationDetails) async {
+    final data = await _paymentRepository.getFinalPaymentToken(orderRegistrationDetails: orderRegistrationDetails);
+    data.fold((error) {
+      emit(PaymentFailure(error.errorMessage));
+    }, (finalToken) {
+      debugPrint('[ORDER LAST TOKEN LOADED ====> TOKEN=$finalToken]');
+      emit(PaymentFinalTokenLoaded(finalToken));
     });
   }
-
 }
