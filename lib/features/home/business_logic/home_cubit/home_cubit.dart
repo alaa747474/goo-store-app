@@ -10,8 +10,6 @@ import 'package:goo_store_app/features/profile/business_logic/profile_cubit/prof
 import 'package:goo_store_app/features/profile/data/repositories/profile_repository.dart';
 import 'package:meta/meta.dart';
 import '../../../../core/service/service_locator.dart';
-import '../../../cart/business_logic/cart_cubit/cart_cubit.dart';
-import '../../../cart/data/repositories/cart_repository.dart';
 import '../../../profile/presentation/screens/profile_screen.dart';
 part 'home_state.dart';
 
@@ -22,13 +20,11 @@ class HomeCubit extends Cubit<HomeState> {
   List screens = [
     const HomeDataScreen(),
     const CategoriesScreen(),
-    BlocProvider(
-      create:(_)=> CartCubit(getIt.get<CartRepository>())..getCart(),
-      child: const CartScreen(),
-    ),
+    const CartScreen(),
     const FavoriteScreen(),
-    BlocProvider.value(
-      value: ProfileCubit(getIt.get<ProfileRepository>())..getUserProfile(),
+    BlocProvider(
+      create: (_) =>
+          ProfileCubit(getIt.get<ProfileRepository>())..getUserProfile(),
       child: const ProfileScreen(),
     )
   ];
@@ -38,10 +34,10 @@ class HomeCubit extends Cubit<HomeState> {
     emit(ChangeBottomNavIndex(selectedIndex));
   }
 
-  void getHomeData() async{
+  void getHomeData() async {
     emit(HomeLoading());
     try {
-      String?token=await AppSecureStorage.instance.getToken();
+      String? token = await AppSecureStorage.instance.getToken();
       _homeRepository.getHomeData(token: token!).then((value) {
         emit(HomeDataLoaded(value));
       });

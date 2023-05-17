@@ -46,7 +46,7 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   void configerFCM() {
     onMessage();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
     void showNotificationBar({required String title, required String body}) {
     _localNotificationService.showNotification(title: title, body: body);

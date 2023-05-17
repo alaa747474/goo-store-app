@@ -9,6 +9,8 @@ import 'package:goo_store_app/core/service/service_locator.dart';
 import 'package:goo_store_app/core/utils/local_notifications.dart';
 import 'package:goo_store_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:goo_store_app/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:goo_store_app/features/cart/business_logic/cart_cubit/cart_cubit.dart';
+import 'package:goo_store_app/features/cart/data/repositories/cart_repository.dart';
 import 'package:goo_store_app/features/favorite/business_logic/favorite_cubit/favorite_cubit.dart';
 import 'package:goo_store_app/features/favorite/data/repositories/favorite_repository.dart';
 import 'package:goo_store_app/features/home/presentation/screens/home_screen.dart';
@@ -26,7 +28,7 @@ void main() async {
   );
   LocalNotificationService.initLocalNotification();
   setUpServiceLocator();
-   getIt.get<NotificationCubit>().configerFCM();
+  getIt.get<NotificationCubit>().configerFCM();
   runApp(const MyApp());
 }
 
@@ -57,6 +59,7 @@ class MyApp extends StatelessWidget {
                   FavoriteCubit(getIt.get<FavoriteRepository>())
                     ..getFavoriteList(),
             ),
+            BlocProvider(create: (context) => CartCubit(getIt.get<CartRepository>())),
           ],
           child: BlocBuilder<SettingCubit, SettingState>(
             builder: (context, state) {

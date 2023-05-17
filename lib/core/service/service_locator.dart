@@ -36,12 +36,7 @@ Dio dioSetUp() {
     ..options.receiveTimeout = const Duration(seconds: 40)
     ..options.receiveDataWhenStatusError = true;
      dio.interceptors.add(LogInterceptor(
-    responseBody: true,
     error: true,
-    requestHeader: true,
-    responseHeader: true,
-    request: true,
-    requestBody: false,
   ));
   return dio;
 }
