@@ -75,9 +75,10 @@ class MyApp extends StatelessWidget {
                   },
                 ),
                 debugShowCheckedModeBanner: false,
-                title: 'GOO STORE',
+                title: 'GOO STORE E-COMMERCE APP',
                 theme: AppTheme.theme(
                     isDarkTheme: context.read<SettingCubit>().isDark),
+                    
                 onGenerateRoute: AppRouter.generateRoute,
               );
             },

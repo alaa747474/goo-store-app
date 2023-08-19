@@ -1,3 +1,4 @@
+//*Assets 
 class AppAssets {
   AppAssets._();
   static final instance=AppAssets._();
