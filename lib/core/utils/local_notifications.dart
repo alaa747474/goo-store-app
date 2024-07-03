@@ -24,7 +24,7 @@ class LocalNotificationService {
 
   NotificationDetails notificationDetalis() {
     return const NotificationDetails(
-        android: AndroidNotificationDetails('channelId', 'channel_name',
+        android: AndroidNotificationDetails('channelId', 'alaaa',
             playSound: true,
             importance: Importance.max,
             priority: Priority.high),
